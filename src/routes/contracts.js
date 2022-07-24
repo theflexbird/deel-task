@@ -23,7 +23,6 @@ const getAllContracts = async (req, res) => {
       status: { [Op.not]: "terminated" }
     }
   });
-  if (!contracts) return res.status(404).end();
   res.json(contracts);
 };
 
