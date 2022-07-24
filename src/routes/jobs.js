@@ -16,7 +16,6 @@ const getUnpaid = async (req, res) => {
       }
     }
   });
-  if (!jobs) return res.status(404).end();
   res.json(jobs);
 };
 
