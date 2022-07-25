@@ -33,7 +33,7 @@ describe("GET /jobs/unpaid", () => {
   });
 });
 
-describe("GET /jobs/:job_id/pay", () => {
+describe("POST /jobs/:job_id/pay", () => {
   afterEach(async () => {
     await seed();
   });

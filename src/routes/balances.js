@@ -5,7 +5,8 @@ const postDeposit = async (req, res) => {
   const { profile } = req;
   const { userId } = req.params;
   const { deposit } = req.body;
-  if (parseInt(userId) !== profile.id) return res.status(400).end();
+  if (parseInt(userId) !== profile.id) return res.status(401).end();
+  if (!deposit || deposit < 1 ) return res.status(400).end();
   const { Job, Profile, Contract } = req.app.get("models");
   const totalAmount = await Job.findOne({
     attributes: [
