@@ -23,7 +23,7 @@ const postPay = async (req, res) => {
   const { profile } = req;
   const { job_id } = req.params;
   const { Job, Contract, Profile } = req.app.get("models");
-  const job = await Job.findOne({
+  let job = await Job.findOne({
     where: {
       paid: { [Op.not]: true },
       id: job_id
@@ -60,6 +60,8 @@ const postPay = async (req, res) => {
     await t.rollback();
     res.status(500).end();
   }
+  job = job.toJSON();
+  delete job.Contract;
   res.json(job);
 };
 
